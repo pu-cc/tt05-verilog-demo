@@ -12,7 +12,28 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
 );
 
     wire reset = ! rst_n;
-    wire [6:0] led_out;
+
+    reg [7:0] a_r, b_r;
+    reg [15:0] p_r;
+
+    assign uo_out = p_r[7:0];
+    assign uio_out = p_r[15:8];
+
+    always @(posedge clk)
+    begin
+        if (reset) begin
+            a_r <= 0;
+            b_r <= 0;
+            p_r <= 0;
+        end
+        else begin
+            a_r <= ui_in;
+            b_r <= uio_in;
+            p_r <= a_r * b_r;
+        end
+    end
+
+    /*wire [6:0] led_out;
     assign uo_out[6:0] = led_out;
     assign uo_out[7] = 1'b0;
 
@@ -55,6 +76,6 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
     end
 
     // instantiate segment display
-    seg7 seg7(.counter(digit), .segments(led_out));
+    seg7 seg7(.counter(digit), .segments(led_out));*/
 
 endmodule
