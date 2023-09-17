@@ -12,6 +12,7 @@ module tt_um_seven_segment_seconds #( parameter MAX_COUNT = 24'd10_000_000 ) (
 );
 
     wire reset = ! rst_n;
+    assign uio_oe = 8'b11111111;
 
     reg [7:0] a_r, b_r;
     reg [15:0] p_r;
