@@ -12,7 +12,7 @@
 */
 
 module seg7 (
-    input wire [3:0] counter,
+    input wire [7:0] counter,
     output reg [6:0] segments
 );
 
@@ -29,7 +29,10 @@ module seg7 (
             7:  segments = 7'b0000111;
             8:  segments = 7'b1111111;
             9:  segments = 7'b1100111;
-            default:    
+            10: segments = 7'b1011111;
+            11: segments = 7'b1111100;
+            12: segments = 7'10110000;
+            default:
                 segments = 7'b0000000;
         endcase
     end
